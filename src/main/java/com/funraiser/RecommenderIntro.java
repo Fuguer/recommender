@@ -16,20 +16,22 @@ import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 public class RecommenderIntro {
 
 	public static void recommend() throws Exception {
-		
+
 		DataModel model = new FileDataModel(new File("resources/intro.csv"));
-		
+
 		UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
-		UserNeighborhood neighborhood = new NearestNUserNeighborhood(2,  similarity, model);
-		
-		Recommender recommender = new GenericUserBasedRecommender(model,  neighborhood,  similarity);
-		
-		List<RecommendedItem> recommendations = recommender.recommend(1,  1);
-		
+		UserNeighborhood neighborhood = new NearestNUserNeighborhood(2,
+				similarity, model);
+
+		Recommender recommender = new GenericUserBasedRecommender(model,
+				neighborhood, similarity);
+
+		List<RecommendedItem> recommendations = recommender.recommend(1, 1);
+
 		for (RecommendedItem recommendation : recommendations) {
 			System.out.println(recommendation);
 		}
-		
+
 	}
-	
+
 }
